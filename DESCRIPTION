@@ -3,12 +3,12 @@ Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
 Imports:
-     CatReg
-     ClusterR
-     fastDummies
-     fossil
-     geepack
-     glmnet
+     CatReg,
+     ClusterR,
+     fastDummies,
+     fossil,
+     geepack,
+     glmnet,
      randomForest
 Authors@R: c(
     person(
