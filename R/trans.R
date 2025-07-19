@@ -17,7 +17,6 @@ trans<-function(x.data, y.data, weight, hosp.id)
   x.matrix<-as.matrix(x.data)
   y.matrix<-as.matrix(ifelse(is.na(y.data), 0, y.data))
 
-  data$int<-rep(1,length(weight))
   y_star<-ZTZ<-rep()
   x_star<-matrix(rep(0),nrow = nrow(x.matrix), ncol = ncol(x.matrix))
   hosp.list<-unique(hosp.id)
