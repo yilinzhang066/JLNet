@@ -1,8 +1,9 @@
 # JLNet
 # Installation
 
-```r
+``` r
 if (!require("devtools")) {
   install.packages("devtools")
 }
 devtools::install_github("yilinzhang066/JLNet")
+```
