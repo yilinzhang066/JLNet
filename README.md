@@ -1,5 +1,8 @@
 # JLNet: A Joint Learning for Analyzing a National Geriatric Centralized Networks
+
 ![](man/figures/workflow.png)
+
+**Background**: 
 
 # Installation
 
