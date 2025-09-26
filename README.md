@@ -40,6 +40,28 @@ Then run the function \emph{tran} to generate transformed versions of the origin
 star.fit <- trans(x.data=x.data, y.data=y.data, weight=weight, hosp.id=simdata[, "hosp"])
 beta.est <- coef_est(id=simdata[,"id"], x=star.fit$x_star, y=star.fit$y_star, weights=weight, nfolds=5, nvisit=6)$beta.est
 ```
+where the object ``beta.est" stores the estimated coefficients with non-zero values indicating predictive covariates.
+
+To perform hospital-level clustering, run the function \emph{theta\_est} to obtain raw estimates of facilitate-level effects $\hat{\theta}_i$, and run \emph{new\_gmm\_bic} to determine the optimal number of latent clusters of $\hat{\theta}_i$'s that minimizes the BIC:
+```r
+thetaest<-theta_est(x=x.data, y="subj_outcome", subj.id="id", hosp.id="hosp", data=simdata, beta=beta.est, weight=weight)
+thetahat <- thetaest$thetahat
+sigma_all <- thetaest$sigma_all
+k <- 2:30
+avg_sil <- sapply(k, new_gmm_bic, nstart=25, thetahat=thetahat, sigma_all=sigma_all)
+opt_num_gmm <- k[which.min(avg_sil)]
+```
+where the object "opt\_num\_gmm" stores the determined cluster size. Then run the function \emph{new\_gmm} to acquire the hospital-level clusters, which will be stored in the object "gmm\_label":
+```r
+R> gmm <- new_gmm(k=opt_num_gmm, thetahat=thetahat,
+nstart=25, sigma_all=sigma_all)
+R> gmm_label <- gmm$label_gmm
+```
+The steps above are also integrated into an all-in-one function \emph{JLNet}. This function returns a list with components \emph{beta.est}, \emph{gmm\_tot\_c} and \emph{gmm\_label}, storing the estimated patient-level effect, the optimal number of latent clusters, and the estimated hospital-level clusters, respectively. Users can either perform the analysis stepwise as we demonstrated above, or use the function \emph{JLNet} to obtain the estimated cluster labels in one step as follows: 
+```r
+result <- JLNet(x=c(3:8,18:217), y="subj_outcome", subj.id="id", hosp.id="hosp", visit="visit", data=simdata, models=models, family=binomial, nfolds=5, nvisit=6, k=c(2:30), nstart=25)
+gmm_label<-result$gmm_label
+```
 
 # Installation
 
