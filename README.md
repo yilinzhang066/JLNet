@@ -13,7 +13,7 @@ set.seed(12345)
 data("simdata", package = "JLNet")
 head(simdata)
 
-id   hosp visit   subj_x_1    subj_x_2  subj_x_3 
+     id   hosp visit   subj_x_1    subj_x_2  subj_x_3 
 1 10001    1     1     7.779783        1     4.918035
 2 10001    1     2     7.603686        1     4.918035
 3 10001    1     3     7.700258        1     4.918035
