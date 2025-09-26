@@ -25,8 +25,7 @@ head(simdata)
 Users can specify a dropout model and use the function \emph{miss} to construct inverse probability weights:
 ```r
 models <- R_i~subj_x_1+subj_outcome_lag
-mis.fit <- miss(models=models, data=simdata,
-visit="visit", subj.id="id", family="binomial")
+mis.fit <- miss(models=models, data=simdata, visit="visit", subj.id="id", family="binomial")
 weight <- mis.fit$weight
 ```
 Note that one requirement of using \emph{miss} is that all patients have identical number of observations in the dataset, thus the row containing missing values should not be discarded.
@@ -34,16 +33,12 @@ Note that one requirement of using \emph{miss} is that all patients have identic
 To identify patient-level variables that are predictive of longitudinal outcomes, first format the data into matrix structures:
 ```r
 x.data <- as.matrix(simdata[, c(3:8,18:217)])
-y.data <- as.matrix(ifelse(is.na(simdata$subj_outcome_obs), 
-0, simdata$subj_outcome_obs))
+y.data <- as.matrix(ifelse(is.na(simdata$subj_outcome_obs), 0, simdata$subj_outcome_obs))
 ```
 Then run the function \emph{tran} to generate transformed versions of the original outcomes and covariates to profile out hospital-level effects, and run the function \emph{beta.est} to identify patient-level variables that are predictive of longitudinal outcomes:
 ```r
-star.fit <- trans(x.data=x.data, y.data=y.data, 
-weight=weight, hosp.id=simdata[, "hosp"])
-beta.est <- coef_est(id=simdata[,"id"], 
-x=star.fit$x_star, y=star.fit$y_star, 
-weights=weight, nfolds=5, nvisit=6)$beta.est
+star.fit <- trans(x.data=x.data, y.data=y.data, weight=weight, hosp.id=simdata[, "hosp"])
+beta.est <- coef_est(id=simdata[,"id"], x=star.fit$x_star, y=star.fit$y_star, weights=weight, nfolds=5, nvisit=6)$beta.est
 ```
 
 # Installation
