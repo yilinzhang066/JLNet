@@ -40,7 +40,7 @@ Then run the function *tran* to generate transformed versions of the original ou
 star.fit <- trans(x.data=x.data, y.data=y.data, weight=weight, hosp.id=simdata[, "hosp"])
 beta.est <- coef_est(id=simdata[,"id"], x=star.fit$x_star, y=star.fit$y_star, weights=weight, nfolds=5, nvisit=6)$beta.est
 ```
-where the object ``beta.est" stores the estimated coefficients with non-zero values indicating predictive covariates.
+where the object "beta.est" stores the estimated coefficients with non-zero values indicating predictive covariates.
 
 To perform hospital-level clustering, run the function *theta\_est* to obtain raw estimates of facilitate-level effects $\hat{\theta}_i$, and run *new\_gmm\_bic* to determine the optimal number of latent clusters of $\hat{\theta}_i$'s that minimizes the BIC:
 ```r
