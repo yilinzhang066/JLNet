@@ -62,6 +62,7 @@ The steps above are also integrated into an all-in-one function \emph{JLNet}. Th
 result <- JLNet(x=c(3:8,18:217), y="subj_outcome", subj.id="id", hosp.id="hosp", visit="visit", data=simdata, models=models, family=binomial, nfolds=5, nvisit=6, k=c(2:30), nstart=25)
 gmm_label<-result$gmm_label
 ```
+More functions will be added.
 
 # Installation
 
