@@ -57,7 +57,7 @@ R> gmm <- new_gmm(k=opt_num_gmm, thetahat=thetahat,
 nstart=25, sigma_all=sigma_all)
 R> gmm_label <- gmm$label_gmm
 ```
-The steps above are also integrated into an all-in-one function *JLNet*. This function returns a list with components *beta.est*, *gmm\_tot\_c* and *gmm\_label*, storing the estimated patient-level effect, the optimal number of latent clusters, and the estimated hospital-level clusters, respectively. Users can either perform the analysis stepwise as we demonstrated above, or use the function *JLNet} to obtain the estimated cluster labels in one step as follows: 
+The steps above are also integrated into an all-in-one function *JLNet*. This function returns a list with components *beta.est*, *gmm\_tot\_c* and *gmm\_label*, storing the estimated patient-level effect, the optimal number of latent clusters, and the estimated hospital-level clusters, respectively. Users can either perform the analysis stepwise as we demonstrated above, or use the function *JLNet* to obtain the estimated cluster labels in one step as follows: 
 ```r
 result <- JLNet(x=c(3:8,18:217), y="subj_outcome", subj.id="id", hosp.id="hosp", visit="visit", data=simdata, models=models, family=binomial, nfolds=5, nvisit=6, k=c(2:30), nstart=25)
 gmm_label<-result$gmm_label
