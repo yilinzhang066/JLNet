@@ -6,7 +6,7 @@
 
 **JLNet** is a novel analytical framework integrating multiple statistical and machine learning techniques, including propensity score weighting, projection methods, regularized regression, and unsupervised learning. It offers several unique features not available in existing toolkits, including the flexible identification of high-dimensional patient-level factors associated with care outcomes (potentially with time-varying effects), the computationally efficient detection of latent hospital clusters, and the ability to handle real-world data complexities, such as patient dropout and non-normally distributed outcomes. 
 
-After installing the \textit{JLNet} package, the simulated data *simdata* can be loaded and viewed using the code:
+After installing the *JLNet* package, the simulated data *simdata* can be loaded and viewed using the code:
 ``` r
 library(JLNet)
 set.seed(12345)
